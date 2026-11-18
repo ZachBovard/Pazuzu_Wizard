@@ -1,4 +1,4 @@
-# Pazuzu beta 1 (build 564)
+# Pazuzu beta 1 (build 566)
 
 Pazuzu sets up your OPNsense firewall, over the firewall's own API.
 

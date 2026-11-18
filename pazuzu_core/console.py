@@ -36,6 +36,8 @@ from typing import Any, Callable, Iterable, Mapping
 from urllib.parse import parse_qs, quote, urlparse
 import urllib.request
 
+from pazuzu_core import feed_pin
+
 from pazuzu_core.change_guard import ChangeGuard, GuardError
 from pazuzu_core import box_controls, rule_copies
 from pazuzu_core.egress_drift import UNREADABLE_SETTINGS, admin_session_verdict, evaluate
@@ -470,7 +472,7 @@ class BoxLink:
         wait = 12 if path == "/internet" else 5           # the internet check takes a few seconds on purpose
         if path in ("/time_zone", "/hardware"):
             wait = 12                                    # the time zone list is asked of PHP the first time; the hardware is read by a few commands
-        with urllib.request.urlopen(req, timeout=wait) as r:  # noqa: S310 (private address only)
+        with feed_pin.urlopen(req, timeout=wait) as r:  # noqa: S310 (private address only)
             return json.loads(r.read(2_000_000))
 
     def connect(self, url: Any, token: Any) -> None:
@@ -486,6 +488,11 @@ class BoxLink:
         if parsed.scheme not in ("http", "https") or not (addr.is_private or addr.is_loopback):
             raise ValueError("The box must be on a private address, with http or https.")
         self.url, self.token = url.strip().rstrip("/"), token
+        if self._fetch is self._http:                    # BUILD 565: the feed's key pin on first use (feed_pin.py)
+            try:
+                feed_pin.learn_soon(self.url)
+            except Exception:  # noqa: BLE001 - plain HTTP as before
+                pass
 
     @staticmethod
     def _http_post(url: str, token: str, path: str, body: dict) -> Any:
@@ -493,7 +500,7 @@ class BoxLink:
         req = urllib.request.Request(url.rstrip("/") + path, data=raw, method="POST",
                                      headers={"Authorization": "Bearer " + token,
                                               "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=130 if path == "/ipv6_none" else 45 if path in ("/report", "/otp_switch") else 20 if path in ("/otp_server", "/gateway_switch", "/hotspot_standby", "/time_zone") else 5) as r:  # noqa: S310 (private address only)
+        with feed_pin.urlopen(req, timeout=130 if path == "/ipv6_none" else 45 if path in ("/report", "/otp_switch") else 20 if path in ("/otp_server", "/gateway_switch", "/hotspot_standby", "/time_zone") else 5) as r:  # noqa: S310 (private address only)
             return json.loads(r.read(65536))
 
     def post(self, path: str, body: dict) -> Any:
@@ -513,7 +520,7 @@ class BoxLink:
         req = urllib.request.Request(self.url.rstrip("/") + path, data=json.dumps(body).encode("utf-8"), method="POST",
                                      headers={"Authorization": "Bearer " + self.token, "Content-Type": "application/json"})
         try:
-            with urllib.request.urlopen(req, timeout=60) as r:  # noqa: S310 (the box's own private address)
+            with feed_pin.urlopen(req, timeout=60) as r:  # noqa: S310 (the box's own private address)
                 return json.loads(r.read(65536))
         except urllib.error.HTTPError as exc:
             try:
@@ -806,7 +813,7 @@ class BoxLink:
                                               "Content-Type": "application/octet-stream",
                                               "X-Hanbi-Version": version, "X-Hanbi-Signature": signature})
         try:
-            with urllib.request.urlopen(req, timeout=60) as r:  # noqa: S310 (private address only)
+            with feed_pin.urlopen(req, timeout=60) as r:  # noqa: S310 (private address only)
                 return json.loads(r.read(65536))
         except urllib.error.HTTPError as exc:
             try:
@@ -851,7 +858,7 @@ class BoxLink:
         req = urllib.request.Request(url.rstrip("/") + path, data=raw, method="POST",
                                      headers={"Authorization": "Bearer " + token,
                                               "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=20) as r:  # noqa: S310 (private address only)
+        with feed_pin.urlopen(req, timeout=20) as r:  # noqa: S310 (private address only)
             return json.loads(r.read(2_000_000))
 
     def ap_relay(self, ip: str, payload: dict) -> Any:

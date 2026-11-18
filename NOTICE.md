@@ -1,6 +1,7 @@
 Pazuzu — Copyright © 2026 Hanbi LLC
 
-The wizard (pazuzu_core) is licensed under the Apache License 2.0; see the LICENSE file.
+The files in this repository (and in the download made from it) are licensed under the Apache License 2.0; see the
+LICENSE file. A file that says at its top that it is closed is not.
 
 The plugin and the manager are not open source and are not part of this build.
 
