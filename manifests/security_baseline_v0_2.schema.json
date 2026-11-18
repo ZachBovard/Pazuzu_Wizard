@@ -1,0 +1,1210 @@
+{
+  "$id": "pazuzu-security-baseline-v0.2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attack_vector_matrix": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "apply_gate": {
+            "type": "string"
+          },
+          "controls": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "id": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          },
+          "vector": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "apply_gate",
+          "controls",
+          "id",
+          "severity",
+          "vector"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "description": {
+      "type": "string"
+    },
+    "device_awareness": {
+      "additionalProperties": false,
+      "properties": {
+        "automatic_trust_elevation": {
+          "type": "boolean"
+        },
+        "inventory_enabled": {
+          "type": "boolean"
+        },
+        "minimum_confidence_for_automatic_classification": {
+          "type": "number"
+        },
+        "profiles": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "allowed_destinations": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "default_zone": {
+                "type": "string"
+              },
+              "discovery_exceptions": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "internet_access": {
+                "type": "string"
+              },
+              "lateral_access": {
+                "type": "string"
+              },
+              "trusted_initiated_printing": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "default_zone",
+              "id"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "signals": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "unknown_device_zone": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "automatic_trust_elevation",
+        "inventory_enabled",
+        "minimum_confidence_for_automatic_classification",
+        "profiles",
+        "signals",
+        "unknown_device_zone"
+      ],
+      "type": "object"
+    },
+    "dns_security": {
+      "additionalProperties": false,
+      "properties": {
+        "block_external_dot_853": {
+          "type": "boolean"
+        },
+        "block_external_tcp_udp_53": {
+          "type": "boolean"
+        },
+        "blocklists": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "activation": {
+                "type": "string"
+              },
+              "allowlist_supported": {
+                "type": "boolean"
+              },
+              "atomic_update": {
+                "type": "boolean"
+              },
+              "desired": {
+                "type": "boolean"
+              },
+              "download_transport": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "maximum_download_bytes": {
+                "type": "integer"
+              },
+              "minimum_valid_entries": {
+                "type": "integer"
+              },
+              "preferred_formats_for_evaluation": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "reject_html_response": {
+                "type": "boolean"
+              },
+              "requested_format": {
+                "type": "string"
+              },
+              "requested_url": {
+                "type": "string"
+              },
+              "retain_last_known_good": {
+                "type": "boolean"
+              },
+              "update_failure_action": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "activation",
+              "allowlist_supported",
+              "atomic_update",
+              "desired",
+              "download_transport",
+              "id",
+              "maximum_download_bytes",
+              "minimum_valid_entries",
+              "preferred_formats_for_evaluation",
+              "reject_html_response",
+              "requested_format",
+              "requested_url",
+              "retain_last_known_good",
+              "update_failure_action"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "clients_must_use_firewall_resolver": {
+          "type": "boolean"
+        },
+        "dns_rebind_protection": {
+          "type": "boolean"
+        },
+        "dnssec_validation": {
+          "type": "boolean"
+        },
+        "doh_policy": {
+          "type": "string"
+        },
+        "local_domain_protection": {
+          "type": "boolean"
+        },
+        "logging": {
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "retention_days": {
+              "type": "integer"
+            },
+            "store_full_client_history": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled",
+            "retention_days",
+            "store_full_client_history"
+          ],
+          "type": "object"
+        },
+        "resolver": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "block_external_dot_853",
+        "block_external_tcp_udp_53",
+        "blocklists",
+        "clients_must_use_firewall_resolver",
+        "dns_rebind_protection",
+        "dnssec_validation",
+        "doh_policy",
+        "local_domain_protection",
+        "logging",
+        "resolver"
+      ],
+      "type": "object"
+    },
+    "document_type": {
+      "type": "string"
+    },
+    "enforcement_mode": {
+      "type": "string"
+    },
+    "generation": {
+      "additionalProperties": false,
+      "properties": {
+        "admin_username": {
+          "additionalProperties": false,
+          "properties": {
+            "alphabet": {
+              "type": "string"
+            },
+            "exclude_ambiguous_characters": {
+              "type": "boolean"
+            },
+            "generator": {
+              "type": "string"
+            },
+            "length": {
+              "type": "integer"
+            },
+            "notes": {
+              "type": "string"
+            },
+            "prefix": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "alphabet",
+            "exclude_ambiguous_characters",
+            "generator",
+            "length",
+            "notes",
+            "prefix"
+          ],
+          "type": "object"
+        },
+        "management_https_port": {
+          "additionalProperties": false,
+          "properties": {
+            "generator": {
+              "type": "string"
+            },
+            "maximum": {
+              "type": "integer"
+            },
+            "minimum": {
+              "type": "integer"
+            },
+            "notes": {
+              "type": "string"
+            },
+            "reject_if_in_use": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "generator",
+            "maximum",
+            "minimum",
+            "notes",
+            "reject_if_in_use"
+          ],
+          "type": "object"
+        },
+        "site_ipv4_supernet": {
+          "additionalProperties": false,
+          "properties": {
+            "generator": {
+              "type": "string"
+            },
+            "preferred_parent": {
+              "type": "string"
+            },
+            "prefix_length": {
+              "type": "integer"
+            },
+            "reject_overlaps": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "require_reachability_probe": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "generator",
+            "preferred_parent",
+            "prefix_length",
+            "reject_overlaps",
+            "require_reachability_probe"
+          ],
+          "type": "object"
+        },
+        "storage": {
+          "type": "string"
+        },
+        "store_generated_values_in_manifest": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "admin_username",
+        "management_https_port",
+        "site_ipv4_supernet",
+        "storage",
+        "store_generated_values_in_manifest"
+      ],
+      "type": "object"
+    },
+    "geo_awareness": {
+      "additionalProperties": false,
+      "properties": {
+        "alerts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "country_is_not_identity": {
+          "type": "boolean"
+        },
+        "database_updates_required": {
+          "type": "boolean"
+        },
+        "default_mode": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "global_outbound_country_blocking": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "published_service_policy": {
+          "additionalProperties": false,
+          "properties": {
+            "allow_country_restrictions_when_explicitly_configured": {
+              "type": "boolean"
+            },
+            "default": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "allow_country_restrictions_when_explicitly_configured",
+            "default"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "alerts",
+        "country_is_not_identity",
+        "database_updates_required",
+        "default_mode",
+        "enabled",
+        "global_outbound_country_blocking",
+        "notes",
+        "published_service_policy"
+      ],
+      "type": "object"
+    },
+    "identity_and_access": {
+      "additionalProperties": false,
+      "properties": {
+        "firewall_admin": {
+          "additionalProperties": false,
+          "properties": {
+            "api_credentials": {
+              "additionalProperties": false,
+              "properties": {
+                "control_plane_storage_allowed": {
+                  "type": "boolean"
+                },
+                "mutation_identity": {
+                  "type": "string"
+                },
+                "read_only_identity": {
+                  "type": "string"
+                },
+                "rotation_required": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "control_plane_storage_allowed",
+                "mutation_identity",
+                "read_only_identity",
+                "rotation_required"
+              ],
+              "type": "object"
+            },
+            "default_named_accounts_disabled_after_validation": {
+              "type": "boolean"
+            },
+            "mfa_required_if_supported": {
+              "type": "boolean"
+            },
+            "password": {
+              "additionalProperties": false,
+              "properties": {
+                "generator": {
+                  "type": "string"
+                },
+                "minimum_length": {
+                  "type": "integer"
+                },
+                "never_commit": {
+                  "type": "boolean"
+                },
+                "never_log": {
+                  "type": "boolean"
+                },
+                "storage": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "generator",
+                "minimum_length",
+                "never_commit",
+                "never_log",
+                "storage"
+              ],
+              "type": "object"
+            },
+            "ssh_enabled": {
+              "type": "boolean"
+            },
+            "username_from": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "api_credentials",
+            "default_named_accounts_disabled_after_validation",
+            "mfa_required_if_supported",
+            "password",
+            "ssh_enabled",
+            "username_from"
+          ],
+          "type": "object"
+        },
+        "remote_management": {
+          "additionalProperties": false,
+          "properties": {
+            "management_scope_only": {
+              "type": "boolean"
+            },
+            "method": {
+              "type": "string"
+            },
+            "one_peer_per_device": {
+              "type": "boolean"
+            },
+            "peer_expiration_supported": {
+              "type": "boolean"
+            },
+            "peer_revocation": {
+              "type": "boolean"
+            },
+            "private_key_storage": {
+              "type": "string"
+            },
+            "required_before_remote_mutation": {
+              "type": "boolean"
+            },
+            "shared_peer_configs": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "management_scope_only",
+            "method",
+            "one_peer_per_device",
+            "peer_expiration_supported",
+            "peer_revocation",
+            "private_key_storage",
+            "required_before_remote_mutation",
+            "shared_peer_configs"
+          ],
+          "type": "object"
+        },
+        "web_management": {
+          "additionalProperties": false,
+          "properties": {
+            "allowed_source_zones": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "guest_access": {
+              "type": "string"
+            },
+            "iot_access": {
+              "type": "string"
+            },
+            "port_from": {
+              "type": "string"
+            },
+            "protocol": {
+              "type": "string"
+            },
+            "trusted_access": {
+              "type": "string"
+            },
+            "valid_certificate_required": {
+              "type": "boolean"
+            },
+            "wan_access": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "allowed_source_zones",
+            "guest_access",
+            "iot_access",
+            "port_from",
+            "protocol",
+            "trusted_access",
+            "valid_certificate_required",
+            "wan_access"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "firewall_admin",
+        "remote_management",
+        "web_management"
+      ],
+      "type": "object"
+    },
+    "ids_ips": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "additionalProperties": false,
+          "properties": {
+            "command_and_control": {
+              "type": "string"
+            },
+            "exploit": {
+              "type": "string"
+            },
+            "high_confidence_malware": {
+              "type": "string"
+            },
+            "informational": {
+              "type": "string"
+            },
+            "unknown_confidence": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "command_and_control",
+            "exploit",
+            "high_confidence_malware",
+            "informational",
+            "unknown_confidence"
+          ],
+          "type": "object"
+        },
+        "deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "automatic_fail_open": {
+              "type": "boolean"
+            },
+            "hardware_compatibility_check_required": {
+              "type": "boolean"
+            },
+            "initial_mode": {
+              "type": "string"
+            },
+            "interface_selection": {
+              "type": "string"
+            },
+            "observation_days": {
+              "type": "integer"
+            },
+            "performance_baseline_required": {
+              "type": "boolean"
+            },
+            "promotion_to_ips": {
+              "type": "string"
+            },
+            "vlan_parent_interface_awareness": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "automatic_fail_open",
+            "hardware_compatibility_check_required",
+            "initial_mode",
+            "interface_selection",
+            "observation_days",
+            "performance_baseline_required",
+            "promotion_to_ips",
+            "vlan_parent_interface_awareness"
+          ],
+          "type": "object"
+        },
+        "desired": {
+          "type": "boolean"
+        },
+        "engine": {
+          "type": "string"
+        },
+        "rule_source_discovery_required": {
+          "type": "boolean"
+        },
+        "rule_sources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "update_schedule": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "actions",
+        "deployment",
+        "desired",
+        "engine",
+        "rule_source_discovery_required",
+        "rule_sources",
+        "update_schedule"
+      ],
+      "type": "object"
+    },
+    "layer7_security": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_categories": {
+          "additionalProperties": false,
+          "properties": {
+            "advertising_tracking": {
+              "type": "string"
+            },
+            "command_and_control": {
+              "type": "string"
+            },
+            "cryptomining": {
+              "type": "string"
+            },
+            "malware": {
+              "type": "string"
+            },
+            "newly_registered_domains": {
+              "type": "string"
+            },
+            "phishing": {
+              "type": "string"
+            },
+            "remote_access_tools": {
+              "type": "string"
+            },
+            "unknown_applications": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "advertising_tracking",
+            "command_and_control",
+            "cryptomining",
+            "malware",
+            "newly_registered_domains",
+            "phishing",
+            "remote_access_tools",
+            "unknown_applications"
+          ],
+          "type": "object"
+        },
+        "deployment": {
+          "additionalProperties": false,
+          "properties": {
+            "enforcement_requires_approval": {
+              "type": "boolean"
+            },
+            "exclude_management_plane_until_validated": {
+              "type": "boolean"
+            },
+            "initial_mode": {
+              "type": "string"
+            },
+            "inspect_zones": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "observation_days": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "enforcement_requires_approval",
+            "exclude_management_plane_until_validated",
+            "initial_mode",
+            "inspect_zones",
+            "observation_days"
+          ],
+          "type": "object"
+        },
+        "desired": {
+          "type": "boolean"
+        },
+        "engine": {
+          "type": "string"
+        },
+        "installation": {
+          "additionalProperties": false,
+          "properties": {
+            "encrypted_baseline_required": {
+              "type": "boolean"
+            },
+            "explicit_approval_required": {
+              "type": "boolean"
+            },
+            "hardware_capacity_check_required": {
+              "type": "boolean"
+            },
+            "initial_configuration_requires_review": {
+              "type": "boolean"
+            },
+            "opnsense_compatibility_check_required": {
+              "type": "boolean"
+            },
+            "package_signature_verification_required": {
+              "type": "boolean"
+            },
+            "plugin_package": {
+              "type": "string"
+            },
+            "repository_package": {
+              "type": "string"
+            },
+            "rollback_plan_required": {
+              "type": "boolean"
+            },
+            "third_party_repository": {
+              "type": "boolean"
+            },
+            "version_policy": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "encrypted_baseline_required",
+            "explicit_approval_required",
+            "hardware_capacity_check_required",
+            "initial_configuration_requires_review",
+            "opnsense_compatibility_check_required",
+            "package_signature_verification_required",
+            "plugin_package",
+            "repository_package",
+            "rollback_plan_required",
+            "third_party_repository",
+            "version_policy"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "baseline_categories",
+        "deployment",
+        "desired",
+        "engine",
+        "installation"
+      ],
+      "type": "object"
+    },
+    "logging_and_alerting": {
+      "additionalProperties": false,
+      "properties": {
+        "alert_priorities": {
+          "additionalProperties": false,
+          "properties": {
+            "critical": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "high": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "medium": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "critical",
+            "high",
+            "medium"
+          ],
+          "type": "object"
+        },
+        "authentication_failures": {
+          "type": "boolean"
+        },
+        "configuration_changes": {
+          "type": "boolean"
+        },
+        "dns_block_events": {
+          "type": "boolean"
+        },
+        "ids_ips_alerts": {
+          "type": "boolean"
+        },
+        "management_path_changes": {
+          "type": "boolean"
+        },
+        "new_device_detection": {
+          "type": "boolean"
+        },
+        "raw_configuration_in_logs": {
+          "type": "string"
+        },
+        "retention_days": {
+          "type": "integer"
+        },
+        "secrets_in_logs": {
+          "type": "string"
+        },
+        "security_events": {
+          "type": "boolean"
+        },
+        "tamper_evident_transaction_log": {
+          "type": "boolean"
+        },
+        "unexpected_ipv6_activity": {
+          "type": "boolean"
+        },
+        "vpn_peer_changes": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "alert_priorities",
+        "authentication_failures",
+        "configuration_changes",
+        "dns_block_events",
+        "ids_ips_alerts",
+        "management_path_changes",
+        "new_device_detection",
+        "raw_configuration_in_logs",
+        "retention_days",
+        "secrets_in_logs",
+        "security_events",
+        "tamper_evident_transaction_log",
+        "unexpected_ipv6_activity",
+        "vpn_peer_changes"
+      ],
+      "type": "object"
+    },
+    "maturity": {
+      "type": "string"
+    },
+    "milestones": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "mutation_allowed": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "requires_explicit_approval": {
+            "type": "boolean"
+          },
+          "requires_local_rollback_watchdog": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "mutation_allowed",
+          "name"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "network": {
+      "additionalProperties": false,
+      "properties": {
+        "default_inbound_wan_policy": {
+          "type": "string"
+        },
+        "default_interzone_policy": {
+          "type": "string"
+        },
+        "ipv6": {
+          "additionalProperties": false,
+          "properties": {
+            "default_wan_inbound": {
+              "type": "string"
+            },
+            "icmpv6_required_control_traffic": {
+              "type": "string"
+            },
+            "interzone_policy_parity": {
+              "type": "boolean"
+            },
+            "no_implicit_ipv6_trust": {
+              "type": "boolean"
+            },
+            "policy": {
+              "type": "string"
+            },
+            "router_advertisement_guards_required": {
+              "type": "boolean"
+            },
+            "unresolved_ipv6_configuration_blocks_apply": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "default_wan_inbound",
+            "icmpv6_required_control_traffic",
+            "interzone_policy_parity",
+            "no_implicit_ipv6_trust",
+            "policy",
+            "router_advertisement_guards_required",
+            "unresolved_ipv6_configuration_blocks_apply"
+          ],
+          "type": "object"
+        },
+        "services": {
+          "additionalProperties": false,
+          "properties": {
+            "bogon_filtering": {
+              "type": "boolean"
+            },
+            "default_state_policy": {
+              "type": "string"
+            },
+            "nat_pmp": {
+              "type": "string"
+            },
+            "private_network_filtering_on_wan": {
+              "type": "boolean"
+            },
+            "source_route_packets": {
+              "type": "string"
+            },
+            "upnp": {
+              "type": "string"
+            },
+            "wan_api": {
+              "type": "string"
+            },
+            "wan_https_management": {
+              "type": "string"
+            },
+            "wan_ssh": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "bogon_filtering",
+            "default_state_policy",
+            "nat_pmp",
+            "private_network_filtering_on_wan",
+            "source_route_packets",
+            "upnp",
+            "wan_api",
+            "wan_https_management",
+            "wan_ssh"
+          ],
+          "type": "object"
+        },
+        "zones": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "client_isolation": {
+                "type": "boolean"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "id": {
+                "type": "string"
+              },
+              "ipv4_subnet_from": {
+                "type": "string"
+              },
+              "trust": {
+                "type": "string"
+              },
+              "vlan_id": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "id",
+              "ipv4_subnet_from",
+              "trust"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "default_inbound_wan_policy",
+        "default_interzone_policy",
+        "ipv6",
+        "services",
+        "zones"
+      ],
+      "type": "object"
+    },
+    "preflight_requirements": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "safety": {
+      "additionalProperties": false,
+      "properties": {
+        "automatic_apply": {
+          "type": "boolean"
+        },
+        "fail_closed_on_validation_error": {
+          "type": "boolean"
+        },
+        "mutation_allowed": {
+          "type": "boolean"
+        },
+        "requires_encrypted_baseline": {
+          "type": "boolean"
+        },
+        "requires_human_approval": {
+          "type": "boolean"
+        },
+        "requires_local_console_recovery": {
+          "type": "boolean"
+        },
+        "requires_local_rollback_watchdog": {
+          "type": "boolean"
+        },
+        "requires_management_path_test": {
+          "type": "boolean"
+        },
+        "requires_rollback_plan": {
+          "type": "boolean"
+        },
+        "single_writer_lock": {
+          "type": "boolean"
+        },
+        "unresolved_references_block_apply": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "automatic_apply",
+        "fail_closed_on_validation_error",
+        "mutation_allowed",
+        "requires_encrypted_baseline",
+        "requires_human_approval",
+        "requires_local_console_recovery",
+        "requires_local_rollback_watchdog",
+        "requires_management_path_test",
+        "requires_rollback_plan",
+        "single_writer_lock",
+        "unresolved_references_block_apply"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "zone_policy": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "exception_model": {
+            "type": "string"
+          },
+          "exceptions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "services": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "destination",
+          "source"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "attack_vector_matrix",
+    "description",
+    "device_awareness",
+    "dns_security",
+    "document_type",
+    "enforcement_mode",
+    "generation",
+    "geo_awareness",
+    "identity_and_access",
+    "ids_ips",
+    "layer7_security",
+    "logging_and_alerting",
+    "maturity",
+    "milestones",
+    "network",
+    "preflight_requirements",
+    "profile",
+    "safety",
+    "schema_version",
+    "zone_policy"
+  ],
+  "type": "object"
+}

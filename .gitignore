@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+scan_results/
+pazuzu_core/beta_token.txt

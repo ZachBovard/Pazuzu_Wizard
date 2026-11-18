@@ -1,0 +1,1430 @@
+{
+  "attack_vector_matrix": [
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "default WAN deny",
+        "WireGuard-only remote management",
+        "management source-zone restriction"
+      ],
+      "id": "AV-001",
+      "severity": "critical",
+      "vector": "WAN exposure of firewall management"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "management-path invariant",
+        "local rollback watchdog",
+        "confirmed commit",
+        "local console recovery"
+      ],
+      "id": "AV-002",
+      "severity": "critical",
+      "vector": "Administrator lockout during rule changes"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "separate read and mutation identities",
+        "secure local storage",
+        "credential rotation",
+        "MFA where supported",
+        "no control-plane secret storage"
+      ],
+      "id": "AV-003",
+      "severity": "critical",
+      "vector": "Stolen API or administrator credential"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "signed intent",
+        "local policy revalidation",
+        "operation allowlists",
+        "human approval",
+        "rollback transaction"
+      ],
+      "id": "AV-004",
+      "severity": "critical",
+      "vector": "Malicious or compromised control plane sends unsafe intent"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "IPv4 and IPv6 policy parity",
+        "default IPv6 deny",
+        "ICMPv6-aware validation",
+        "unexpected IPv6 alerting"
+      ],
+      "id": "AV-005",
+      "severity": "critical",
+      "vector": "IPv6 bypasses IPv4 security policy"
+    },
+    {
+      "apply_gate": "required",
+      "controls": [
+        "IoT VLAN",
+        "client isolation",
+        "deny private networks",
+        "explicit controller exceptions",
+        "IDS and Layer-7 monitoring"
+      ],
+      "id": "AV-006",
+      "severity": "high",
+      "vector": "Compromised IoT device moves laterally"
+    },
+    {
+      "apply_gate": "required",
+      "controls": [
+        "device inventory",
+        "quarantine profile",
+        "no automatic trust elevation",
+        "new-device alert"
+      ],
+      "id": "AV-007",
+      "severity": "high",
+      "vector": "Unknown or rogue device joins a trusted network"
+    },
+    {
+      "apply_gate": "required",
+      "controls": [
+        "force local DNS",
+        "block external port 53",
+        "block DoT",
+        "observe then restrict known DoH",
+        "Layer-7 awareness"
+      ],
+      "id": "AV-008",
+      "severity": "high",
+      "vector": "DNS filtering bypass through external DNS, DoT or DoH"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "verified HTTPS",
+        "format validation",
+        "size and entry thresholds",
+        "atomic replacement",
+        "last-known-good retention"
+      ],
+      "id": "AV-009",
+      "severity": "high",
+      "vector": "Poisoned, malformed or unavailable remote blocklist"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "explicit approval",
+        "compatibility check",
+        "signature verification",
+        "baseline backup",
+        "rollback plan"
+      ],
+      "id": "AV-010",
+      "severity": "high",
+      "vector": "Compromised third-party plugin or package repository"
+    },
+    {
+      "apply_gate": "required",
+      "controls": [
+        "IDS observation phase",
+        "high-confidence promotion only",
+        "performance baseline",
+        "rollback"
+      ],
+      "id": "AV-011",
+      "severity": "high",
+      "vector": "IDS or IPS false positive causes outage"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "hardware capacity gate",
+        "interface compatibility test",
+        "resource monitoring",
+        "staged enablement"
+      ],
+      "id": "AV-012",
+      "severity": "high",
+      "vector": "IDS, IPS or Layer-7 inspection exhausts firewall resources"
+    },
+    {
+      "apply_gate": "required",
+      "controls": [
+        "one peer per device",
+        "device-only key storage",
+        "narrow AllowedIPs",
+        "independent revocation",
+        "peer activity alerts"
+      ],
+      "id": "AV-013",
+      "severity": "high",
+      "vector": "WireGuard client configuration or private key is stolen"
+    },
+    {
+      "apply_gate": "required",
+      "controls": [
+        "UPnP disabled",
+        "NAT-PMP disabled",
+        "published service inventory"
+      ],
+      "id": "AV-014",
+      "severity": "high",
+      "vector": "UPnP or NAT-PMP silently publishes an internal service"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "explicit VLAN bindings",
+        "native VLAN review",
+        "managed switch validation",
+        "interzone verification tests"
+      ],
+      "id": "AV-015",
+      "severity": "high",
+      "vector": "VLAN hopping or switch misconfiguration defeats segmentation"
+    },
+    {
+      "apply_gate": "required",
+      "controls": [
+        "scheduled read-only discovery",
+        "desired-state comparison",
+        "drift alert",
+        "no silent remediation"
+      ],
+      "id": "AV-016",
+      "severity": "high",
+      "vector": "Configuration drift creates an unreviewed exposure"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "encrypted backups",
+        "allowlisted report fields",
+        "no private keys",
+        "no API secrets",
+        "restricted retention"
+      ],
+      "id": "AV-017",
+      "severity": "high",
+      "vector": "Backup or diagnostic report leaks secrets or topology"
+    },
+    {
+      "apply_gate": "warning",
+      "controls": [
+        "country used as risk signal only",
+        "monitor-first policy",
+        "authentication remains mandatory",
+        "no global country deny by default"
+      ],
+      "id": "AV-018",
+      "severity": "medium",
+      "vector": "GeoIP evasion or false attribution"
+    },
+    {
+      "apply_gate": "warning",
+      "controls": [
+        "WAN management remains denied",
+        "WireGuard required",
+        "TLS required",
+        "strong authentication required"
+      ],
+      "id": "AV-019",
+      "severity": "medium",
+      "vector": "Randomized management port is mistaken for real security"
+    },
+    {
+      "apply_gate": "hard_fail",
+      "controls": [
+        "route and interface discovery",
+        "overlap rejection",
+        "reachability probe",
+        "human-readable plan"
+      ],
+      "id": "AV-020",
+      "severity": "high",
+      "vector": "Random private subnet overlaps an upstream, VPN or remote network"
+    }
+  ],
+  "description": "Opinionated OPNsense security baseline with managed rule-pack auditing and preservation of unrelated configuration.",
+  "device_awareness": {
+    "automatic_trust_elevation": false,
+    "inventory_enabled": true,
+    "minimum_confidence_for_automatic_classification": 0.9,
+    "profiles": [
+      {
+        "default_zone": "trusted",
+        "id": "workstation"
+      },
+      {
+        "default_zone": "trusted",
+        "id": "mobile"
+      },
+      {
+        "default_zone": "iot",
+        "id": "voice_assistant",
+        "lateral_access": "deny"
+      },
+      {
+        "default_zone": "iot",
+        "discovery_exceptions": "explicit_only",
+        "id": "smart_tv_media",
+        "lateral_access": "deny"
+      },
+      {
+        "allowed_destinations": [
+          "approved_recorder",
+          "approved_ntp",
+          "approved_dns"
+        ],
+        "default_zone": "iot",
+        "id": "camera",
+        "internet_access": "deny_by_default"
+      },
+      {
+        "default_zone": "iot",
+        "id": "printer",
+        "internet_access": "deny_by_default",
+        "trusted_initiated_printing": "explicit_only"
+      },
+      {
+        "default_zone": "management",
+        "id": "network_infrastructure"
+      },
+      {
+        "default_zone": "dmz_or_management_by_role",
+        "id": "server"
+      },
+      {
+        "default_zone": "quarantine",
+        "id": "unknown"
+      }
+    ],
+    "signals": [
+      "dhcp_lease",
+      "arp_neighbor",
+      "ipv6_neighbor",
+      "mac_oui",
+      "mdns",
+      "hostname",
+      "zenarmor_application_observation"
+    ],
+    "unknown_device_zone": "quarantine"
+  },
+  "dns_security": {
+    "block_external_dot_853": true,
+    "block_external_tcp_udp_53": true,
+    "blocklists": [
+      {
+        "activation": "blocked_pending_adapter_format_validation",
+        "allowlist_supported": true,
+        "atomic_update": true,
+        "desired": true,
+        "download_transport": "verified_https",
+        "id": "hagezi_multi_pro_requested",
+        "maximum_download_bytes": 50000000,
+        "minimum_valid_entries": 1000,
+        "preferred_formats_for_evaluation": [
+          "wildcard_asterisk",
+          "rpz"
+        ],
+        "reject_html_response": true,
+        "requested_format": "adblock",
+        "requested_url": "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/pro.txt",
+        "retain_last_known_good": true,
+        "update_failure_action": "keep_last_known_good"
+      }
+    ],
+    "clients_must_use_firewall_resolver": true,
+    "dns_rebind_protection": true,
+    "dnssec_validation": true,
+    "doh_policy": "observe_then_block_known_resolvers",
+    "local_domain_protection": true,
+    "logging": {
+      "enabled": true,
+      "retention_days": 14,
+      "store_full_client_history": false
+    },
+    "resolver": "opnsense_managed"
+  },
+  "document_type": "pazuzu_security_baseline",
+  "enforcement_mode": "plan_only",
+  "generation": {
+    "admin_username": {
+      "alphabet": "lowercase_ascii_and_digits",
+      "exclude_ambiguous_characters": true,
+      "generator": "cryptographic_random_identifier",
+      "length": 20,
+      "notes": "Random usernames reduce predictability but do not replace strong authentication.",
+      "prefix": "pa_"
+    },
+    "management_https_port": {
+      "generator": "cryptographic_random_integer",
+      "maximum": 49151,
+      "minimum": 10240,
+      "notes": "Secondary scanning-noise reduction only. Management remains unavailable from WAN. Same range and avoid-list as management_ports.py.",
+      "reject_if_in_use": true
+    },
+    "site_ipv4_supernet": {
+      "generator": "random_rfc1918_supernet",
+      "preferred_parent": "10.0.0.0/8",
+      "prefix_length": 20,
+      "reject_overlaps": [
+        "wan_connected_networks",
+        "local_routes",
+        "vpn_routes",
+        "existing_interfaces",
+        "configured_aliases",
+        "192.168.0.0/24",
+        "192.168.1.0/24",
+        "10.0.0.0/24",
+        "10.0.1.0/24"
+      ],
+      "require_reachability_probe": true
+    },
+    "storage": "local_agent_encrypted_state",
+    "store_generated_values_in_manifest": false,
+    "management_ssh_port": {
+      "generator": "cryptographic_random_integer",
+      "maximum": 49151,
+      "minimum": 10240,
+      "notes": "A different port from the web GUI. SSH is off until it is turned on.",
+      "reject_if_in_use": true
+    }
+  },
+  "geo_awareness": {
+    "alerts": [
+      "administrative_login_from_unexpected_country",
+      "vpn_peer_activity_from_unexpected_country",
+      "outbound_connection_to_high_risk_country_when_contextually_unusual"
+    ],
+    "country_is_not_identity": true,
+    "database_updates_required": true,
+    "default_mode": "monitor",
+    "enabled": true,
+    "global_outbound_country_blocking": false,
+    "notes": "GeoIP is an imperfect risk signal and must not replace authentication or default-deny policy.",
+    "published_service_policy": {
+      "allow_country_restrictions_when_explicitly_configured": true,
+      "default": "no_published_services"
+    }
+  },
+  "identity_and_access": {
+    "firewall_admin": {
+      "api_credentials": {
+        "control_plane_storage_allowed": false,
+        "mutation_identity": "separate",
+        "read_only_identity": "separate",
+        "rotation_required": true
+      },
+      "default_named_accounts_disabled_after_validation": true,
+      "mfa_required_if_supported": true,
+      "password": {
+        "generator": "cryptographic_random",
+        "minimum_length": 24,
+        "never_commit": true,
+        "never_log": true,
+        "storage": "platform_secure_store"
+      },
+      "ssh_enabled": false,
+      "username_from": "generation.admin_username"
+    },
+    "remote_management": {
+      "management_scope_only": true,
+      "method": "wireguard_only",
+      "one_peer_per_device": true,
+      "peer_expiration_supported": true,
+      "peer_revocation": true,
+      "private_key_storage": "originating_device_only",
+      "required_before_remote_mutation": true,
+      "shared_peer_configs": "prohibited"
+    },
+    "web_management": {
+      "allowed_source_zones": [
+        "management",
+        "wireguard_admin"
+      ],
+      "guest_access": "deny",
+      "iot_access": "deny",
+      "port_from": "generation.management_https_port",
+      "protocol": "https",
+      "trusted_access": "deny_by_default",
+      "valid_certificate_required": true,
+      "wan_access": "deny"
+    },
+    "ssh_management": {
+      "allowed_source_zones": [
+        "management",
+        "wireguard_admin"
+      ],
+      "default_state": "off",
+      "listen_on": [
+        "management"
+      ],
+      "port_from": "generation.management_ssh_port",
+      "trusted_access": "deny_by_default",
+      "wan_access": "deny"
+    }
+  },
+  "ids_ips": {
+    "actions": {
+      "command_and_control": "drop_after_observation",
+      "exploit": "drop_after_observation",
+      "high_confidence_malware": "drop_after_observation",
+      "informational": "alert",
+      "unknown_confidence": "alert"
+    },
+    "deployment": {
+      "automatic_fail_open": false,
+      "hardware_compatibility_check_required": true,
+      "initial_mode": "ids",
+      "interface_selection": "internal_pre_nat_visibility_preferred",
+      "observation_days": 7,
+      "performance_baseline_required": true,
+      "promotion_to_ips": "human_approved_high_confidence_rules_only",
+      "vlan_parent_interface_awareness": true
+    },
+    "desired": true,
+    "engine": "suricata",
+    "rule_source_discovery_required": true,
+    "rule_sources": [
+      "emerging_threats_open",
+      "abuse_ch_feodo",
+      "abuse_ch_urlhaus",
+      "available_opnsense_application_detection"
+    ],
+    "update_schedule": "daily"
+  },
+  "layer7_security": {
+    "baseline_categories": {
+      "advertising_tracking": "block_with_allowlist",
+      "command_and_control": "block_after_observation",
+      "cryptomining": "block_after_observation",
+      "malware": "block_after_observation",
+      "newly_registered_domains": "alert",
+      "phishing": "block_after_observation",
+      "remote_access_tools": "alert",
+      "unknown_applications": "alert"
+    },
+    "deployment": {
+      "enforcement_requires_approval": true,
+      "exclude_management_plane_until_validated": true,
+      "initial_mode": "observe",
+      "inspect_zones": [
+        "trusted",
+        "iot",
+        "guest",
+        "quarantine"
+      ],
+      "observation_days": 7
+    },
+    "desired": true,
+    "engine": "zenarmor",
+    "installation": {
+      "encrypted_baseline_required": true,
+      "explicit_approval_required": true,
+      "hardware_capacity_check_required": true,
+      "initial_configuration_requires_review": true,
+      "opnsense_compatibility_check_required": true,
+      "package_signature_verification_required": true,
+      "plugin_package": "os-sensei",
+      "repository_package": "os-sunnyvalley",
+      "rollback_plan_required": true,
+      "third_party_repository": true,
+      "version_policy": "current_compatible_release"
+    }
+  },
+  "logging_and_alerting": {
+    "alert_priorities": {
+      "critical": [
+        "wan_management_exposure",
+        "management_path_removed",
+        "rollback_failed",
+        "firewall_unreachable",
+        "api_credential_compromise"
+      ],
+      "high": [
+        "wireguard_peer_anomaly",
+        "command_and_control_detected",
+        "unexpected_admin_login",
+        "configuration_drift"
+      ],
+      "medium": [
+        "new_unknown_device",
+        "repeated_dns_blocks",
+        "country_anomaly"
+      ]
+    },
+    "authentication_failures": true,
+    "configuration_changes": true,
+    "dns_block_events": true,
+    "ids_ips_alerts": true,
+    "management_path_changes": true,
+    "new_device_detection": true,
+    "raw_configuration_in_logs": "prohibited",
+    "retention_days": 30,
+    "secrets_in_logs": "prohibited",
+    "security_events": true,
+    "tamper_evident_transaction_log": true,
+    "unexpected_ipv6_activity": true,
+    "vpn_peer_changes": true
+  },
+  "maturity": "alpha_0_4",
+  "milestones": [
+    {
+      "id": "M1",
+      "mutation_allowed": false,
+      "name": "Parse and validate baseline"
+    },
+    {
+      "id": "M2",
+      "mutation_allowed": false,
+      "name": "Compare observed state against baseline"
+    },
+    {
+      "id": "M3",
+      "mutation_allowed": false,
+      "name": "Generate human-readable security plan and attack-vector report"
+    },
+    {
+      "id": "M4",
+      "mutation_allowed": false,
+      "name": "Generate dry-run transaction plan and rollback operations"
+    },
+    {
+      "id": "M5",
+      "mutation_allowed": true,
+      "name": "Apply isolated lab alias transaction",
+      "requires_explicit_approval": true
+    },
+    {
+      "id": "M6",
+      "mutation_allowed": true,
+      "name": "Apply staged network security baseline",
+      "requires_explicit_approval": true,
+      "requires_local_rollback_watchdog": true
+    }
+  ],
+  "network": {
+    "default_inbound_wan_policy": "deny",
+    "default_interzone_policy": "deny",
+    "ipv6": {
+      "default_wan_inbound": "deny",
+      "icmpv6_required_control_traffic": "allow",
+      "interzone_policy_parity": true,
+      "no_implicit_ipv6_trust": true,
+      "policy": "disabled",
+      "router_advertisement_guards_required": true,
+      "unresolved_ipv6_configuration_blocks_apply": true
+    },
+    "services": {
+      "bogon_filtering": true,
+      "default_state_policy": "stateful",
+      "nat_pmp": "disabled",
+      "private_network_filtering_on_wan": true,
+      "source_route_packets": "deny",
+      "upnp": "disabled",
+      "wan_api": "deny",
+      "wan_https_management": "deny",
+      "wan_ssh": "deny"
+    },
+    "zones": [
+      {
+        "client_isolation": false,
+        "id": "management",
+        "ipv4_subnet_from": "generation.site_ipv4_supernet.subnet_0_24",
+        "trust": "administrative",
+        "vlan_id": 10
+      },
+      {
+        "client_isolation": false,
+        "id": "trusted",
+        "ipv4_subnet_from": "generation.site_ipv4_supernet.subnet_1_24",
+        "trust": "trusted_user",
+        "vlan_id": 20
+      },
+      {
+        "client_isolation": true,
+        "id": "iot",
+        "ipv4_subnet_from": "generation.site_ipv4_supernet.subnet_2_24",
+        "trust": "untrusted_device",
+        "vlan_id": 30
+      },
+      {
+        "client_isolation": true,
+        "id": "guest",
+        "ipv4_subnet_from": "generation.site_ipv4_supernet.subnet_3_24",
+        "trust": "untrusted_guest",
+        "vlan_id": 40
+      },
+      {
+        "enabled": false,
+        "id": "dmz",
+        "ipv4_subnet_from": "generation.site_ipv4_supernet.subnet_4_24",
+        "trust": "published_service",
+        "vlan_id": 50
+      },
+      {
+        "id": "wireguard_admin",
+        "ipv4_subnet_from": "generation.site_ipv4_supernet.subnet_5_24",
+        "trust": "administrative_vpn"
+      },
+      {
+        "client_isolation": true,
+        "id": "quarantine",
+        "ipv4_subnet_from": "generation.site_ipv4_supernet.subnet_6_24",
+        "trust": "unknown"
+      }
+    ]
+  },
+  "policy_pack": {
+    "adoption_required_before_modification": true,
+    "audit_requirements": [
+      "inventory_aliases",
+      "inventory_filter_rules",
+      "inventory_nat_rules",
+      "inventory_interface_assignments",
+      "inventory_management_listeners",
+      "inventory_dns_configuration",
+      "inventory_ipv6_configuration",
+      "inventory_ids_ips_configuration",
+      "detect_duplicate_rules",
+      "detect_shadowed_rules",
+      "detect_any_to_any_allows",
+      "detect_management_exposure",
+      "detect_unmanaged_conflicts"
+    ],
+    "conflict_policy": "fail_closed",
+    "defaults": {
+      "interzone": "deny",
+      "log_denies": true,
+      "quick_rules": true,
+      "rule_state": "stateful",
+      "wan_inbound": "deny"
+    },
+    "mode": "plan_only",
+    "name": "Pazuzu Secure OPNsense",
+    "pack_id": "pazuzu.opnsense.secure_home",
+    "platform_controls": {
+      "dns": {
+        "block_external_dot_853": true,
+        "block_external_tcp_udp_53": true,
+        "dnssec_validation": true,
+        "doh_policy": "observe_then_block_known_resolvers",
+        "force_local_resolver": true,
+        "rebind_protection": true,
+        "resolver": "unbound"
+      },
+      "ids_ips": {
+        "automatic_blocking": false,
+        "engine": "suricata",
+        "initial_mode": "ids",
+        "promotion_requires_approval": true
+      },
+      "ipv6": {
+        "implicit_trust": "prohibited",
+        "policy": "disabled",
+        "ula_generation": "prohibited",
+        "user_controllable": false,
+        "if_enabled": "not_happy"
+      },
+      "logging": {
+        "authentication_failures": true,
+        "configuration_changes": true,
+        "denied_interzone_traffic": true,
+        "denied_wan_traffic": true,
+        "management_access": true,
+        "secrets": "prohibited"
+      },
+      "management": {
+        "allowed_zones": [
+          "management",
+          "wireguard_admin"
+        ],
+        "https_only": true,
+        "mfa_required_if_supported": true,
+        "valid_certificate_required": true
+      },
+      "services": {
+        "hardware_offloading": "disabled_for_ids_ips",
+        "nat_pmp": "disabled",
+        "source_routing": "deny",
+        "upnp": "disabled"
+      },
+      "wan": {
+        "api": "deny",
+        "block_bogon_networks": true,
+        "block_private_networks": true,
+        "default_inbound": "deny",
+        "ssh": "deny",
+        "web_management": "deny"
+      },
+      "uplinks": {
+        "schema_version": "0.1",
+        "mode": "plan_only",
+        "failover": {
+          "default_gateway_switching": true,
+          "tier_priority_step": 50,
+          "monitor": {
+            "distinct_address_per_uplink": true,
+            "candidates": [
+              "1.1.1.1",
+              "9.9.9.9",
+              "208.67.222.222"
+            ],
+            "never_monitor_uplink_gateway": true
+          },
+          "failback": {
+            "automatic": true
+          }
+        },
+        "eligibility": {
+          "only_uplinks_may_be_gateways": true,
+          "non_uplink_gateways": "mark_down"
+        },
+        "wifi_client": {
+          "supplicant": {
+            "supervised": true,
+            "join_timeout_seconds": null,
+            "retry": "bounded"
+          },
+          "security": {
+            "minimum": "wpa2_psk"
+          },
+          "credentials": {
+            "store": "derived_key_only"
+          },
+          "scan_results": {
+            "retain": false
+          }
+        },
+        "setup_mode": {
+          "backup_uplink_available_during_setup": false
+        }
+      },
+      "admin_session": {
+        "schema_version": "0.1",
+        "mode": "plan_only",
+        "idle_timeout_minutes": {
+          "target": 15,
+          "max_override": 60
+        },
+        "override_max_hours": 24
+      }
+    },
+    "preserve_unmanaged_rules": true,
+    "rules": [
+      {
+        "action": "allow",
+        "destination": [
+          "firewall_management"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "Management zone to firewall HTTPS",
+        "object_id": "PZ-MGMT-001",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 100,
+        "schema_version": "0.4",
+        "services": [
+          "firewall_management"
+        ],
+        "source": [
+          "management"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "firewall_management"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "WireGuard administrators to firewall HTTPS",
+        "object_id": "PZ-MGMT-002",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 110,
+        "schema_version": "0.4",
+        "services": [
+          "firewall_management"
+        ],
+        "source": [
+          "wireguard_admin"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "firewall"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "WireGuard tunnel port to firewall",
+        "object_id": "PZ-WG-001",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 120,
+        "schema_version": "0.4",
+        "services": [
+          "wireguard_tunnel"
+        ],
+        "source": [
+          "trusted"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "firewall"
+        ],
+        "direction": "in",
+        "enabled": false,
+        "log": false,
+        "name": "WireGuard tunnel port from the internet (switched on only by VPN setup)",
+        "object_id": "PZ-WG-002",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 125,
+        "schema_version": "0.4",
+        "services": [
+          "wireguard_tunnel"
+        ],
+        "source": [
+          "wan"
+        ]
+      },
+      {
+        "action": "deny",
+        "destination": [
+          "firewall_management"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": true,
+        "name": "Block all other firewall management access",
+        "object_id": "PZ-MGMT-010",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 190,
+        "schema_version": "0.4",
+        "services": [
+          "firewall_management"
+        ],
+        "source": [
+          "trusted",
+          "iot",
+          "guest",
+          "dmz",
+          "quarantine",
+          "wan"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "firewall_core"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "Internal zones to firewall DNS DHCP and NTP",
+        "object_id": "PZ-CORE-001",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 200,
+        "schema_version": "0.4",
+        "services": [
+          "firewall_core"
+        ],
+        "source": [
+          "management",
+          "trusted",
+          "iot",
+          "guest",
+          "dmz",
+          "quarantine",
+          "wireguard_admin"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "opendns_resolvers"
+        ],
+        "direction": "in",
+        "enabled": false,
+        "log": true,
+        "name": "Direct OpenDNS lookups for a set time (switched on by hand, then back off)",
+        "object_id": "PZ-DNS-020",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 240,
+        "schema_version": "0.4",
+        "services": [
+          "dns_plain"
+        ],
+        "source": [
+          "trusted",
+          "management"
+        ]
+      },
+      {
+        "action": "deny",
+        "destination": [
+          "internet"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": true,
+        "name": "Block direct external DNS",
+        "object_id": "PZ-DNS-010",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 250,
+        "schema_version": "0.4",
+        "services": [
+          "udp/53",
+          "tcp/53",
+          "tcp/853"
+        ],
+        "source": [
+          "trusted",
+          "iot",
+          "guest",
+          "quarantine"
+        ]
+      },
+      {
+        "action": "reject",
+        "destination": [
+          "internet"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "Turn QUIC away at once",
+        "object_id": "PZ-QUIC-010",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 260,
+        "schema_version": "0.4",
+        "services": [
+          "udp/443"
+        ],
+        "source": [
+          "trusted",
+          "iot",
+          "guest",
+          "dmz"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "firewall"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "IoT devices may ping the firewall",
+        "object_id": "PZ-IOT-005",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 210,
+        "schema_version": "0.4",
+        "services": [
+          "icmp/echo"
+        ],
+        "source": [
+          "iot"
+        ]
+      },
+      {
+        "action": "deny",
+        "destination": [
+          "private_networks"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": true,
+        "name": "Block IoT access to private networks",
+        "object_id": "PZ-IOT-001",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 300,
+        "schema_version": "0.4",
+        "services": [
+          "all"
+        ],
+        "source": [
+          "iot"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "internet"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "Allow restricted IoT web access",
+        "object_id": "PZ-IOT-010",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 310,
+        "schema_version": "0.4",
+        "services": [
+          "approved_web"
+        ],
+        "source": [
+          "iot"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "internet"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "IoT devices may ping the internet",
+        "object_id": "PZ-IOT-011",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 315,
+        "schema_version": "0.4",
+        "services": [
+          "icmp/echo"
+        ],
+        "source": [
+          "iot"
+        ]
+      },
+      {
+        "action": "deny",
+        "destination": [
+          "private_networks"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": true,
+        "name": "Block guest access to private networks",
+        "object_id": "PZ-GUEST-001",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 400,
+        "schema_version": "0.4",
+        "services": [
+          "all"
+        ],
+        "source": [
+          "guest"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "internet"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "Allow restricted guest web access",
+        "object_id": "PZ-GUEST-010",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 410,
+        "schema_version": "0.4",
+        "services": [
+          "approved_web"
+        ],
+        "source": [
+          "guest"
+        ]
+      },
+      {
+        "action": "deny",
+        "destination": [
+          "management"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": true,
+        "name": "Block trusted clients from management zone",
+        "object_id": "PZ-TRUST-001",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 500,
+        "schema_version": "0.4",
+        "services": [
+          "all"
+        ],
+        "source": [
+          "trusted"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "internet"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "Allow approved trusted outbound access",
+        "object_id": "PZ-TRUST-010",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 510,
+        "schema_version": "0.4",
+        "services": [
+          "approved_outbound"
+        ],
+        "source": [
+          "trusted"
+        ]
+      },
+      {
+        "action": "deny",
+        "destination": [
+          "private_networks"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": true,
+        "name": "Block DMZ access to private networks",
+        "object_id": "PZ-DMZ-001",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 600,
+        "schema_version": "0.4",
+        "services": [
+          "all"
+        ],
+        "source": [
+          "dmz"
+        ]
+      },
+      {
+        "action": "allow",
+        "destination": [
+          "internet"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": false,
+        "name": "Allow restricted DMZ web access (updates)",
+        "object_id": "PZ-DMZ-010",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 610,
+        "schema_version": "0.4",
+        "services": [
+          "approved_web"
+        ],
+        "source": [
+          "dmz"
+        ]
+      },
+      {
+        "action": "deny",
+        "destination": [
+          "any"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": true,
+        "name": "Block quarantine access beyond core services",
+        "object_id": "PZ-QUAR-001",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 700,
+        "schema_version": "0.4",
+        "services": [
+          "all"
+        ],
+        "source": [
+          "quarantine"
+        ]
+      },
+      {
+        "action": "deny",
+        "destination": [
+          "firewall",
+          "private_networks"
+        ],
+        "direction": "in",
+        "enabled": true,
+        "log": true,
+        "name": "Explicit WAN default deny",
+        "object_id": "PZ-WAN-001",
+        "object_type": "firewall_rule",
+        "ownership": "pazuzu_managed",
+        "priority": 900,
+        "schema_version": "0.4",
+        "services": [
+          "all"
+        ],
+        "source": [
+          "wan"
+        ]
+      }
+    ],
+    "schema_version": "0.4",
+    "service_groups": {
+      "approved_outbound": [
+        "tcp/80",
+        "tcp/443"
+      ],
+      "approved_web": [
+        "tcp/80",
+        "tcp/443"
+      ],
+      "firewall_core": [
+        "udp/53",
+        "tcp/53",
+        "udp/67",
+        "udp/123"
+      ],
+      "firewall_management": [
+        "tcp/443"
+      ],
+      "wireguard_tunnel": [
+        "udp/2354"
+      ],
+      "dns_plain": [
+        "udp/53",
+        "tcp/53"
+      ]
+    },
+    "unknown_state_policy": "manual_review"
+  },
+  "preflight_requirements": [
+    "all physical interfaces discovered",
+    "interface role bindings approved",
+    "WAN and management paths identified",
+    "local console recovery confirmed",
+    "encrypted configuration baseline captured",
+    "OPNsense version compatibility confirmed",
+    "package inventory captured",
+    "route overlap scan passed",
+    "IPv4 and IPv6 plan validated",
+    "management connectivity probe passed",
+    "rollback operations generated",
+    "no unresolved hard-fail attack vectors"
+  ],
+  "profile": "hanbi-secure-home",
+  "safety": {
+    "automatic_apply": false,
+    "fail_closed_on_validation_error": true,
+    "mutation_allowed": false,
+    "requires_encrypted_baseline": true,
+    "requires_human_approval": true,
+    "requires_local_console_recovery": true,
+    "requires_local_rollback_watchdog": true,
+    "requires_management_path_test": true,
+    "requires_rollback_plan": true,
+    "single_writer_lock": true,
+    "unresolved_references_block_apply": true
+  },
+  "schema_version": "0.4",
+  "zone_policy": [
+    {
+      "action": "allow",
+      "destination": "managed_infrastructure",
+      "services": [
+        "https",
+        "ssh_when_explicitly_enabled",
+        "snmp_when_explicitly_enabled"
+      ],
+      "source": "management"
+    },
+    {
+      "action": "allow",
+      "destination": "firewall_management",
+      "services": [
+        "https"
+      ],
+      "source": "wireguard_admin"
+    },
+    {
+      "action": "allow",
+      "destination": "management",
+      "services": [
+        "approved_management_services"
+      ],
+      "source": "wireguard_admin"
+    },
+    {
+      "action": "deny",
+      "destination": "management",
+      "source": "trusted"
+    },
+    {
+      "action": "deny_by_default",
+      "destination": "iot",
+      "exception_model": "explicit_controller_to_device",
+      "source": "trusted"
+    },
+    {
+      "action": "deny",
+      "destination": "private_networks",
+      "exceptions": [
+        "approved_dns",
+        "approved_ntp",
+        "explicit_device_dependencies"
+      ],
+      "source": "iot"
+    },
+    {
+      "action": "allow_restricted",
+      "destination": "internet",
+      "services": [
+        "dns_via_firewall",
+        "ntp_via_approved_service",
+        "http",
+        "https"
+      ],
+      "source": "iot"
+    },
+    {
+      "action": "deny",
+      "destination": "private_networks",
+      "source": "guest"
+    },
+    {
+      "action": "allow_restricted",
+      "destination": "internet",
+      "services": [
+        "dns_via_firewall",
+        "http",
+        "https",
+        "approved_vpn_protocols"
+      ],
+      "source": "guest"
+    },
+    {
+      "action": "deny",
+      "destination": "private_networks",
+      "source": "quarantine"
+    },
+    {
+      "action": "allow_minimal",
+      "destination": "internet",
+      "services": [
+        "dns_via_firewall",
+        "http",
+        "https"
+      ],
+      "source": "quarantine"
+    }
+  ]
+}
