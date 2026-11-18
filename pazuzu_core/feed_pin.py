@@ -1,4 +1,4 @@
-"""The PC's side of the plugin feed over HTTPS (HTTPS step 2, agreed with the code chat on 17 Nov 2026).
+"""The PC's side of the plugin feed over HTTPS (HTTPS step 2).
 
 From plugin 0.7.18 the feed answers HTTPS on its own port as well as plain HTTP, with a key made on the firewall and
 signed by nobody. What proves it is the same box is the key's pin: the SHA-256 of its public key (SubjectPublicKeyInfo),

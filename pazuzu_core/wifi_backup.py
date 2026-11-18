@@ -757,7 +757,7 @@ class Hotspot:
         return back
 
     # -- 1. the Wi-Fi device
-    # BUILD 502 (the maintainer, prod, 11 Nov 2026: "the wizard didn't do it ... joined but after i manually changed those
+    # BUILD 502 ("the wizard didn't do it ... joined but after i manually changed those
     # settings"): a Wi-Fi device made earlier ("test") kept Minimum standard 11a (5 GHz only, so a 2.4 GHz hotspot was
     # never seen), Pure 802.11n on, WPA Mode WPA (the first one) and Pairwise "Both (legacy)", which a phone's
     # hotspot will not take. Joining a phone needs the device to look on 2.4 GHz too and to speak WPA2 with AES, so

@@ -28,7 +28,7 @@ from urllib.parse import quote
 from pazuzu_core.passkey_gate import plan_digest
 
 TIMEOUT = 15.0
-# BUILD 463: Applying the block lists makes Unbound load every list again. On prod (3 Nov 2026) that took over a minute,
+# BUILD 463: Applying the block lists makes Unbound load every list again. On a real firewall that took over a minute,
 # names went unanswered meanwhile, and Pazuzu's 15-second wait said "not applied" while it went on.
 DNSBL_APPLY_TIMEOUT = 300.0
 DNSBL_NOTE = "Applying the block lists reloads them: names stop answering for about a minute while it does"
@@ -128,7 +128,7 @@ CAPS: dict[str, Cap] = {c.id: c for c in (
         frozenset({"enabled", "name", "type", "content", "description"}),
         apply="/api/firewall/alias/search_item", free=frozenset({"content"})),
     # Who may ask the firewall's DNS. Unbound answers only the networks of the ports it knows; the VPN's network is not
-    # one (prod, 29 Oct 2026: the phone's lookups reached the firewall's own address and were never answered), so it gets one entry.
+    # one (the phone's lookups reached the firewall's own address and were never answered), so it gets one entry.
     Cap("unbound_acl", "Let the VPN ask the firewall's DNS", "unbound_acl", "/api/unbound/settings/search_acl", "item",
         frozenset({"enabled", "name", "action", "networks", "description"}), key="name",
         apply="/api/unbound/service/status", free=frozenset({"name", "networks", "description"})),
@@ -671,7 +671,7 @@ class Engine:
         lines = [(title or cap.title) + ": " + name] + [f"{k}: {previous[k] or '(empty)'} to {shown[k] or '(empty)'}"
                                                        for k in sorted(shown)]
         if cap_id == "dnsbl_entry":
-            # BUILD 463: an entry naming a list this firewall no longer offers cannot be saved at all (prod: "atf"), so
+            # BUILD 463: an entry naming a list this firewall no longer offers cannot be saved at all (such as "atf"), so
             # such a list is taken out in the same save; it blocks nothing any more.
             lines.append("A list type this firewall no longer offers is taken out of the entry, if it has one "
                          "(it blocks nothing)")

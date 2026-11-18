@@ -14,7 +14,7 @@ So:
   3. doorbells and cameras recognised by the name they give DHCP (Ring calls itself "ring-" and the end of its hardware
      address), put on a hardware-address list, IoT_cameras, with one rule letting UDP out to the internet from it.
      Never a maker prefix: Ring's 34:15:13 is Texas Instruments, the maker of its Wi-Fi chip, used by other gadgets too.
-A list or rule a person made by hand with the same name counts as there (prod's were made by hand first, the same day).
+A list or rule a person made by hand with the same name counts as there (they are often made by hand first).
 """
 from __future__ import annotations
 

@@ -135,8 +135,8 @@ def resolve_service(choices: dict[str, str], provider_id: str) -> str:
 # How the firewall learns its own public address. The firewall requires one; these are web lookups from its own list,
 # tried in this order, so it still works behind another router (the firewall's own port would show a private address).
 CHECKIP_PREFER = ("web_ipify-ipv4", "web_icanhazip", "web_cloudflare")
-# BUILD 455: the names those web lookups use. Ad and tracker block lists carry some of them (api.ipify.org on prod,
-# 2 Nov 2026: the firewall's own DNS answered 0.0.0.0, so no name was updated after the lists went on). Pazuzu puts
+# BUILD 455: the names those web lookups use. Ad and tracker block lists carry some of them (api.ipify.org:
+# the firewall's own DNS answered 0.0.0.0, so no name was updated after the lists went on). Pazuzu puts
 # them on the block lists' allow list whenever it turns lists on, and on request for lists already on.
 CHECKER_HOSTS = ("api.ipify.org", "icanhazip.com", "one.one.one.one")
 # A firewall whose internet port holds the public address reads it there: no web lookup, nothing to block.

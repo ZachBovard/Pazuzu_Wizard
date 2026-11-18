@@ -79,7 +79,7 @@ def _is_dns(e: dict) -> bool:
 
 def _is_ntp(e: dict) -> bool:
     """A time redirect: UDP 123 sent to a real address. A target of "*" or nothing (the fields swapped by hand, seen on
-    prod 30 Oct 2026) or 127.0.0.1 does not count: it catches nothing."""
+    a real firewall) or 127.0.0.1 does not count: it catches nothing."""
     t = _ip(e["target"])
     return (e["port"] in NTP_PORTS or e["local_port"] in NTP_PORTS) and t is not None and not t.is_loopback
 

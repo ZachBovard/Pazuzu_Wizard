@@ -319,7 +319,7 @@ class CertSetup(ZoneVlans):
         say("Asking Let's Encrypt. The firewall puts the proof at GoDaddy, then removes it." if facts.get("method") == "dns01gd"
             else "Asking Let's Encrypt. The firewall puts the proof at DuckDNS, then removes it." if facts.get("method") == "dns01"
             else "Asking Let's Encrypt. The firewall opens port 80 for its check, then closes it again.")
-        # BUILD 473: the row keeps the last run's answer until this run ends (prod: a "refused" from 13:21 was read 5 s
+        # BUILD 473: the row keeps the last run's answer until this run ends (a "refused" from 13:21 was read 5 s
         # after asking again at 13:37, while acme.sh still waited for DNS; the run then issued it). So the answer only
         # counts once the row says this run ended: its last-run time (or status) differs from before asking.
         before = _run_mark(next((r for r in self._rows(A + "/certificates/search") if str(r.get("uuid")) == uuid), None))

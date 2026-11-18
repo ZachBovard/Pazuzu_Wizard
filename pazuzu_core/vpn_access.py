@@ -8,7 +8,7 @@ from the tunnel's own network only:
   - the firewall's DNS, so the phone gets the same filtered answers as at home;
   - the internet, and only the internet (not the home's other networks): what a full tunnel is for;
   - but not DNS (53, 853) or time (UDP 123) out there, nor QUIC (UDP 443): four blocks ahead of the full-tunnel rule,
-    as the home networks have (BUILD 442; prod, 1 Nov 2026: the full-tunnel rule alone drifted DNS, time and QUIC).
+    as the home networks have (BUILD 442: the full-tunnel rule alone drifted DNS, time and QUIC).
     The phone asks the firewall for names already (BUILD 420); apps fall back from QUIC to ordinary HTTPS by themselves.
 No outbound NAT rule is made: OPNsense's own automatic (and hybrid) source NAT already lists the WireGuard network on
 the internet side (seen on a production firewall, 29 Oct 2026), so the tunnel's traffic leaves by the firewall's address.
@@ -67,7 +67,7 @@ def missing(rule_rows: Iterable[Mapping], want: list[dict[str, str]]) -> list[di
     return [w for w in want if w["description"] not in have]
 
 
-ACL_NAME = "Pazuzu_VPN"            # Unbound's access-list name takes no spaces: "Pazuzu VPN" was refused on prod every time (31 Oct 2026)
+ACL_NAME = "Pazuzu_VPN"            # Unbound's access-list name takes no spaces: "Pazuzu VPN" was refused every time
 
 
 def acl_values(net: str) -> dict:

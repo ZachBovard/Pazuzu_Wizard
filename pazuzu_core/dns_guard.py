@@ -146,7 +146,7 @@ def read(getter: Callable[[str], Any], zones: Mapping[str, Mapping], choice: str
 
 def redirect_values(p: Mapping) -> dict:
     """The fields of one redirect, as write_engine's dnat_rule takes them. A time redirect is the same shape, on UDP 123
-    (the Govee lights on prod's IoT asked Alibaba's and Google's time servers ~3,500 times each, 30 Oct 2026)."""
+    (Govee lights on an IoT network asked Alibaba's and Google's time servers ~3,500 times each)."""
     if p.get("kind") == "ntp":
         return {"disabled": "0", "interface": p["interface"], "ipprotocol": "inet", "protocol": "udp",
                 "destination.network": "any", "destination.port": "123", "target": p["target"], "local-port": "123",

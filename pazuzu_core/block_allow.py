@@ -8,7 +8,7 @@ the write engine like every other change (passkey, read back, undo kept).
 What is never offered: traffic that came in from the internet, anything that is not TCP or UDP with a port,
 and a device whose address is not a private IPv4 one.
 
-BUILD 426 (prod, 30 Oct 2026): "Always" follows the device, not its address, and never opens the home networks:
+BUILD 426: "Always" follows the device, not its address, and never opens the home networks:
   - "out":  the device (its hardware address, on a list of its own, PZ_dev_<mac>) may use that port, to the internet only
   - "home": your home network may reach that device on that port (your phone to the Hue bridge), stateful, so the device
             still starts nothing toward home
@@ -27,7 +27,7 @@ TEMP = "Pazuzu: 30-second allow "
 KINDS = ("out", "home", "udp")
 _MAC = re.compile(r"^[0-9a-f]{2}(:[0-9a-f]{2}){5}$")
 _HOME = [ipaddress.ip_network(n) for n in ("10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16")]   # not Python's is_private, which also takes documentation ranges
-# BUILD 491 (prod, 10 Nov 2026: "The port it came in on was not understood" on Allow it for a Tuya bulb): OPNsense names a
+# BUILD 491 ("The port it came in on was not understood" on Allow it for a Tuya bulb): OPNsense names a
 # VLAN port "vlan0.10" and a Wi-Fi one "iwn0_wlan1"; the dot and the underscore were turned away, so nothing on the IoT
 # network could be allowed. The firewall's own port list still decides (interface_id), this only screens the text.
 _DEVICE = re.compile(r"^[a-z][a-z0-9_.]{0,31}$")

@@ -178,7 +178,7 @@ def _lifeline_stage(rows: list[dict[str, Any]], timeout: int,
         notes.append(LAB_NOTE)
     elif not found and way_in:
         # BUILD 434: a way in that is not a lifeline rule still counts: a switched-on VPN instance on the firewall, or
-        # a bonded Bluetooth door on a box that has one (prod, 31 Oct 2026: the VPN was up and the step still said
+        # a bonded Bluetooth door on a box that has one (the VPN was up and the step still said
         # "no way in", so the person ticked the lab box to get past it)
         notes.append(f"no lifeline rule is on the firewall yet, but {way_in} is a way in, so this step can go on")
     elif not found:

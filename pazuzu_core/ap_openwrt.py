@@ -36,7 +36,7 @@ _SECTION = re.compile(r"^[A-Za-z0-9_]{1,64}$")
 AP_MAKERS = ("google", "tp-link", "tplink", "ubiquiti", "netgear", "linksys", "asus", "d-link", "gl technologies",
              "gl.inet", "xiaomi", "mercusys", "zyxel", "mikrotik", "buffalo", "belkin", "arcadyan", "ruijie", "cudy")
 MAX_EVERYONE = 64           # BUILD 482: Hanbi's Wi-Fi step asks every device the box knows (named ones first), up to this
-                            # (BUILD 488: 32 to 64, and the manager's search too: prod knows 41 and its Gale was not asked)
+                            # (BUILD 488: 32 to 64, and the manager's search too: with 41 devices known, the access point was not asked)
 
 
 class ApError(Exception):
@@ -55,7 +55,7 @@ def private_address(text) -> str | None:
     return str(a) if a.version == 4 and a.is_private and not a.is_loopback and not a.is_link_local else None
 
 
-# BUILD 556 (the Anzu chat, 17 Nov 2026: after a flash the browser landed on LuCI over https, so uhttpd may send http to
+# BUILD 556 (after a flash the browser landed on LuCI over https, so uhttpd may send http to
 # https, "and a redirected /ubus would not give the wizard a JSON-RPC answer"): an access point that answers /ubus with
 # a redirect to https on its own address is asked there instead. Its certificate is its own self-made one, so it is not
 # checked: the same trust plain http has on the home network, and nothing leaves that address. Remembered for the run.
@@ -722,7 +722,7 @@ def find(clients: list[dict] | None, vendor_of: Callable[[str], str], post: Post
     with ThreadPoolExecutor(max_workers=12) as pool:     # BUILD 488: 6 to 12, so asking 64 takes seconds, not a minute
         got = list(pool.map(ask, cands))
     found = [x for x in got if x]
-    # BUILD 556 (the Anzu chat, 17 Nov 2026: a Gale's cable was in `wan`, which the factory bridge leaves out): a device
+    # BUILD 556 (an access point's cable was in `wan`, which the factory bridge leaves out): a device
     # that calls itself OpenWrt and gives no answer is most likely cabled by its WAN port, where OpenWrt answers nothing.
     silent = [{"ip": c["ip"], "name": c["name"]} for c, x in zip(cands, got)
               if not x and re.search(r"openwrt|lede", c["name"], re.I)]
@@ -878,7 +878,7 @@ def set_vlans(ip: str, mapping: dict, password: str = "", post: Post | None = No
 # ----------------------------------------------------------------- creating the firewall's zone Wi-Fi on the access point
 def after_made(address: str, post: Post, session: str, bname: str, tags: list, sleep, clock,
                say: Callable[[str], None]) -> dict:
-    """BUILD 556 (the Anzu chat, 17 Nov 2026: "restart networking and check a DHCP lease per VLAN on the access point;
+    """BUILD 556 ("restart networking and check a DHCP lease per VLAN on the access point;
     radios re-attached after wireless restarts gave clients no address until a network restart"). After the change is
     confirmed: restart the access point's network once, wait for it to answer, then ask for an address on each VLAN
     from the access point itself, which shows the firewall's network really arrives there tagged. Nothing is kept from

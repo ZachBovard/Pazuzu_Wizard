@@ -100,7 +100,7 @@ def _ports(value: Any, aliases: Mapping[str, Any]):
         return _ALL
     ports: set[int] = set()
     # BUILD 474: the rule's field is read lowercased (_text), so the lists are looked up the same way: "IoT_cloud_ports"
-    # was never found under "iot_cloud_ports", and every rule using it could not be judged (prod, 3 Nov 2026)
+    # was never found under "iot_cloud_ports", and every rule using it could not be judged
     aliases = {str(k).strip().lower(): v for k, v in (aliases or {}).items()}
     tokens = [t for t in re.split(r"[,\s]+", text) if t]
     for token in tokens:

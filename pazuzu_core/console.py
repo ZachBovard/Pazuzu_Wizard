@@ -444,7 +444,7 @@ def _ap_find(source) -> dict:
         clients = (status or {}).get("clients") or []
     except Exception:
         clients = []
-    # BUILD 488 (the maintainer, 10 Nov 2026: prod "didnt find the gale on its network"): every device the box knows, the likely
+    # BUILD 488 (an access point was not found on the network): every device the box knows, the likely
     # ones first, as the phone's Wi-Fi step does; a fixed-address access point with no name was not on the short list
     out = ap_openwrt.find(clients, oui.vendor, everyone=True)
     out["devices_known"] = len(clients)
@@ -1084,7 +1084,7 @@ class ActionError(Exception):
 
 # ---------------------------------------------------------------- the manager app (beta 2)
 # The manager's own code (its page and its web handler) lives in the pazuzu_manager package, which is not part of the
-# Apache-licensed beta 1 build (legal chat hand-off, 10 Nov 2026). Everything above — the box link, the state builders,
+# Apache-licensed beta 1 build. Everything above — the box link, the state builders,
 # the sample data — is the open plumbing the wizard uses. These wrappers keep old imports working where the manager is
 # present, and say plainly when it is not.
 MANAGER_MISSING = ("The manager is not in this build. It comes with beta 2; "

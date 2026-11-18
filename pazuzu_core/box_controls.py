@@ -389,7 +389,7 @@ def rows(services: Mapping[str, Any] | None) -> list[tuple[str, str, str, str, l
 
 def unread_rows(services: Mapping[str, Any] | None, shown: set) -> list[tuple[str, str, str, str, list[str]]]:
     """A line the firewall would not let Pazuzu read stays on the board as "can't check", with the reason, instead of
-    vanishing (prod, 30 Oct 2026: the morning the installer account closed, the VPN and DNS cards were simply gone)."""
+    vanishing (the morning the installer account closed, the VPN and DNS cards were simply gone)."""
     if not isinstance(services, Mapping):
         return []
     why = dict(services.get("unread") or {}) if isinstance(services.get("unread"), Mapping) else {}
